@@ -19,9 +19,17 @@ function addItemToList(item) {
   var listItem = document.createElement("li");
   listItem.textContent = item;
   itemList.appendChild(listItem);
+  listItem.dataset.clickCount = 0;
 
   listItem.onclick = function () {
-    this.style.textDecoration =
-      this.style.textDecoration === "line-through" ? "none" : "line-through";
+    let currentClickCount = parseInt(this.dataset.clickCount);
+    currentClickCount++;
+    this.dataset.clickCount = currentClickCount;
+
+    if (currentClickCount === 1) {
+      this.style.textDecoration = "line-through";
+    } else if (currentClickCount === 2) {
+      this.remove();
+    }
   };
 }
