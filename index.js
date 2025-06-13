@@ -18,7 +18,9 @@ function addItemToList(item) {
   var itemList = document.getElementById("todo-list");
   var listItem = document.createElement("li");
   listItem.textContent = item;
+
   itemList.appendChild(listItem);
+
   listItem.dataset.clickCount = 0;
 
   listItem.onclick = function () {
