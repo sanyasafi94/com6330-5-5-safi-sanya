@@ -19,4 +19,9 @@ function addItemToList(item) {
   var listItem = document.createElement("li");
   listItem.textContent = item;
   itemList.appendChild(listItem);
+
+  listItem.onclick = function () {
+    this.style.textDecoration =
+      this.style.textDecoration === "line-through" ? "none" : "line-through";
+  };
 }
