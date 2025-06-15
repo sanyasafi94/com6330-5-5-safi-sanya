@@ -1,23 +1,25 @@
 var form = document.getElementById("add-todo");
-form.onsubmit = function (e) {
-  console.log("submitted");
-  e.preventDefault();
+const button = document.querySelector("form button");
 
+button.addEventListener("click", function () {
   var data = document.querySelector("input");
-
   var item = data.value;
-  console.log(item);
 
   if (item !== "") {
-    addItemToList(item);
-    data.value = "";
+    if (item.trim().length !== 0) {
+      addItemToList(item);
+      data.value = "";
+    }
   }
-};
+});
 
 function addItemToList(item) {
   var itemList = document.getElementById("todo-list");
   var listItem = document.createElement("li");
-  listItem.textContent = item;
+  var button = document.createElement("button");
+  button.textContent = item;
+
+  listItem.appendChild(button);
 
   itemList.appendChild(listItem);
 
@@ -29,7 +31,7 @@ function addItemToList(item) {
     this.dataset.clickCount = currentClickCount;
 
     if (currentClickCount === 1) {
-      this.style.textDecoration = "line-through";
+      this.children[0].style.textDecoration = "line-through";
     } else if (currentClickCount === 2) {
       this.remove();
     }
